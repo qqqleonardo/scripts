@@ -25,7 +25,7 @@ async function main () {
     //签到
     console.log("\n开始签到")
     console.log("——————")
-    let sign = await commonPost("/growthJob/sign", token);
+    let sign = await commonPost("growthJob/sign", token);
     if (sign.code == 200) {
         console.log("签到成功")
     } else {
@@ -35,7 +35,7 @@ async function main () {
     //获取信息
     await $.wait(5000);
     console.log("\n——————")
-    let info = await commonPost("/user/info/queryUserAccount", token);
+    let info = await commonPost("user/info/queryUserAccount", token);
     console.log(`当前拥有积分: ${info.data.freeScore}\n`)
     // await $.wait(5000);
     if (notice) {
