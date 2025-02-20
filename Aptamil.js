@@ -25,7 +25,7 @@ async function main () {
     //签到
     console.log("\n开始签到")
     console.log("——————")
-    let sign = await commonPost("sign", {});
+    let sign = await commonPost("sign", token);
     if (sign.code == 200) {
         console.log("签到成功")
     } else {
@@ -56,6 +56,7 @@ async function getCookie () {
 }
 
 async function commonPost (url, token) {
+    console.log("token is:",token)
     return new Promise(resolve => {
         const options = {
             url: `https://wecom-frontapi.aptamil.com.cn/api/growthJob/${url}`,
