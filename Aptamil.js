@@ -1,9 +1,17 @@
-/**
- * cron "5 8,12,18,20 * * *" GuJing.js
- * export GuJing='[{"memberId":"1","token":"1"},{"memberId":"2","token":"2"}]'
- */
-const $ = new Env('爱他美官方商城');
-const Aptamil = ($.isNode() ? JSON.parse(process.env.Aptamil) : $.getjson("Aptamil")) || [];
+/*
+配置 (QuanX)
+[MITM]
+hostname = https://wecom-frontapi.aptamil.com.cn
+
+[rewrite_local]
+^https:\/\/wecom-frontapi\.aptamil\.com\.cn\/api\/member\/queryMemberByUserId url script-request-header https://raw.githubusercontent.com/qqqleonardo/scripts/refs/heads/main/Aptamil.js
+[task_local]
+15 10 * * * https://raw.githubusercontent.com/qqqleonardo/scripts/refs/heads/main/Aptamil.js, tag=爱他美官方商城, enabled=true
+====================================================================================================
+*/
+const $ = new Env('爱他美官方商城升级版');
+const token_name ="Aptamil";
+const Aptamil = ($.isNode() ? JSON.parse(process.env.Aptamil) : $.getjson(token_name)) || [];
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -14,7 +22,7 @@ let notice = ''
 })().catch((e) => { $.log(e) }).finally(() => { $.done({}); });
 
 async function main () {
-    token = $.getjson("Aptamil");
+    token = $.getjson(token_name);
     //签到
     console.log("\n开始签到")
     console.log("——————")
@@ -44,8 +52,8 @@ async function getCookie () {
     if (!token) {
         return
     }
-    $.msg($.name, `🎉获取爱他美认证:${token}成功!`, ``);
-    $.setjson("Aptamil", token);
+    $.msg($.name, `🎉获取爱他美认证成功!\n${token}`, ``);
+    $.setjson(token,token_name);
 }
 
 async function commonPost (url, token) {
