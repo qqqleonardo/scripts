@@ -10,8 +10,7 @@ hostname = https://wecom-frontapi.aptamil.com.cn
 ====================================================================================================
 */
 const $ = new Env('爱他美官方商城升级版');
-const token_name ="Aptamil";
-const Aptamil = ($.isNode() ? JSON.parse(process.env.Aptamil) : $.getjson(token_name)) || [];
+const Aptamil = ($.isNode() ? JSON.parse(process.env.Aptamil) : $.getjson("Aptamil")) || [];
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -22,7 +21,7 @@ let notice = ''
 })().catch((e) => { $.log(e) }).finally(() => { $.done({}); });
 
 async function main () {
-    token = $.getjson(token_name);
+    token = $.getjson("Aptamil");
     //签到
     console.log("\n开始签到")
     console.log("——————")
@@ -32,7 +31,7 @@ async function main () {
     } else {
         console.log(sign.message)
     }
-    await $.wait(2000);
+    // await $.wait(2000);
 
     // //获取信息
     // await $.wait(5000);
@@ -53,7 +52,7 @@ async function getCookie () {
         return
     }
     $.msg($.name, `🎉获取爱他美认证成功!\n${token}`, ``);
-    $.setjson(token,token_name);
+    $.setjson(Aptamil,"Aptamil");
 }
 
 async function commonPost (url, token) {
