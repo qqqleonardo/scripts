@@ -25,20 +25,18 @@ async function main () {
     //签到
     console.log("\n开始签到")
     console.log("——————")
-    let sign = await commonPost("sign", token);
+    let sign = await commonPost("/growthJob/sign", token);
     if (sign.code == 200) {
         console.log("签到成功")
     } else {
-        console.log(sign.message)
+        console.log(`签到失败: ${sign.message}`)
     }
-    // await $.wait(2000);
 
-    // //获取信息
-    // await $.wait(5000);
-    // console.log("\n——————")
-    // let info = await commonGet("/member/info");
-    // console.log(`拥有积分: ${info.content.vipMemberPointDTO.getPoint}\n`)
-    // notice += `用户：${memberId} 拥有积分: ${info.content.vipMemberPointDTO.getPoint}\n`
+    //获取信息
+    await $.wait(5000);
+    console.log("\n——————")
+    let info = await commonPost("/user/info/queryUserAccount", token);
+    console.log(`当前拥有积分: ${info.data.freeScore}\n`)
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
@@ -56,10 +54,9 @@ async function getCookie () {
 }
 
 async function commonPost (url, token) {
-    console.log("token is:",token)
     return new Promise(resolve => {
         const options = {
-            url: `https://wecom-frontapi.aptamil.com.cn/api/growthJob/${url}`,
+            url: `https://wecom-frontapi.aptamil.com.cn/api/${url}`,
             headers : {
                 'content-type': `application/json`,
                 'x-user-id': `1581729`,
@@ -94,41 +91,41 @@ $.post(options, (err, resp, data) => {
     })
 }
 
-async function commonGet (url) {
-    return new Promise(resolve => {
-        const options = {
-            url: `https://scrm.gujing.com/gujing_scrm/wxclient${url}`,
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'sec-fetch-site': 'same-origin',
-                'accept-language': 'zh-CN,zh-Hans;q=0.9',
-                'accept-encoding': 'gzip, deflate, br',
-                'sec-fetch-mode': 'cors',
-                'Content-Type': 'application/json;charset=utf-8',
-                'origin': 'https://scrm.gujing.com',
-                'Access-Token': token,
-                'content-length': '42',
-                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.47(0x18002f2c) NetType/4G Language/zh_CN miniProgram/wxba9855bdb1a45c8e',
-                'Connection': 'keep-alive',
-                'Sec-Fetch-Dest': 'empty'
-            }
-        }
-        $.get(options, (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} API请求失败，请检查网路重试`)
-                } else {
-                    resolve(JSON.parse(data));
-                }
-            } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
+// async function commonGet (url) {
+//     return new Promise(resolve => {
+//         const options = {
+//             url: `https://scrm.gujing.com/gujing_scrm/wxclient${url}`,
+//             headers: {
+//                 'Accept': 'application/json, text/plain, */*',
+//                 'sec-fetch-site': 'same-origin',
+//                 'accept-language': 'zh-CN,zh-Hans;q=0.9',
+//                 'accept-encoding': 'gzip, deflate, br',
+//                 'sec-fetch-mode': 'cors',
+//                 'Content-Type': 'application/json;charset=utf-8',
+//                 'origin': 'https://scrm.gujing.com',
+//                 'Access-Token': token,
+//                 'content-length': '42',
+//                 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.47(0x18002f2c) NetType/4G Language/zh_CN miniProgram/wxba9855bdb1a45c8e',
+//                 'Connection': 'keep-alive',
+//                 'Sec-Fetch-Dest': 'empty'
+//             }
+//         }
+//         $.get(options, (err, resp, data) => {
+//             try {
+//                 if (err) {
+//                     console.log(`${JSON.stringify(err)}`)
+//                     console.log(`${$.name} API请求失败，请检查网路重试`)
+//                 } else {
+//                     resolve(JSON.parse(data));
+//                 }
+//             } catch (e) {
+//                 $.logErr(e, resp)
+//             } finally {
+//                 resolve();
+//             }
+//         })
+//     })
+// }
 
 async function sendMsg (message) {
     if ($.isNode()) {
