@@ -28,8 +28,10 @@ async function main () {
     let sign = await commonPost("growthJob/sign", token);
     if (sign.code == 200) {
         console.log("签到成功")
+        notice += `用户签到成功\n`
     } else {
         console.log(`签到失败: ${sign.message}`)
+        notice += `用户签到失败:${sign.message}\n`
     }
 
     //获取信息
