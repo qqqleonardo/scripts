@@ -37,6 +37,7 @@ async function main () {
     console.log("\n——————")
     let info = await commonPost("user/info/queryUserAccount", token);
     console.log(`当前拥有积分: ${info.data.freeScore}\n`)
+    notice += `用户当前拥有积分: ${info.data.freeScore}\n`
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
