@@ -25,7 +25,7 @@ async function main () {
     //签到
     console.log("\n开始签到")
     console.log("——————")
-    let sign = await commonPost("growthJob/sign", token);
+    let sign = await commonPost("growthJob/sign", token,{});
     if (sign.code == 200) {
         console.log("签到成功")
         notice += `用户签到成功\n`
@@ -34,10 +34,24 @@ async function main () {
         notice += `用户签到失败:${sign.message}\n`
     }
 
-    //获取信息
-    await $.wait(5000);
+    //分享小程序
+    await $.wait(3000);
     console.log("\n——————")
-    let info = await commonPost("user/info/queryUserAccount", token);
+    const body = `{"shareType":3,"page":"pages/mine/index"}`;
+    let share = await commonPost("userScore/shareJob", token,body);
+    if (share.code == 200 && share.success ) {
+        console.log("分享成功")
+        notice += `用户分享成功\n`
+    } else {
+        console.log(`分享失败: ${share.message}`)
+        notice += `用户分享失败:${share.message}\n`
+    }
+
+
+    //获取信息
+    await $.wait(3000);
+    console.log("\n——————")
+    let info = await commonPost("user/info/queryUserAccount", token,{});
     console.log(`当前拥有积分: ${info.data.freeScore}\n`)
     notice += `用户当前拥有积分: ${info.data.freeScore}\n`
     // await $.wait(5000);
@@ -56,7 +70,7 @@ async function getCookie () {
     $.setjson(Aptamil,"Aptamil");
 }
 
-async function commonPost (url, token) {
+async function commonPost (url, token,body) {
     return new Promise(resolve => {
         const options = {
             url: `https://wecom-frontapi.aptamil.com.cn/api/${url}`,
@@ -75,7 +89,7 @@ async function commonPost (url, token) {
                 'Referer' : `https://servicewechat.com/wx5fe8a4cde954d037/151/page-frame.html`,
                 'clientSource' : `2`
             },
-            body: {},
+            body: `${body}`,
         }
 $.post(options, (err, resp, data) => {
     try {
