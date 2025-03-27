@@ -44,8 +44,8 @@ async function main () {
     await $.wait(3000);
     console.log("\n——————")
     let info = await commonGet("/mine/getMemberInfo", token);
-    console.log(`当前拥有积分: ${info.data.score}\n`)
-    notice += `用户当前拥有积分: ${info.data.score}\n`
+    console.log(`当前拥有积分: ${info.data.member.score}\n`)
+    notice += `用户当前拥有积分: ${info.data.member.score}\n`
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
@@ -67,7 +67,7 @@ async function getCookie () {
     if (!token) {
         return
     }
-    $.msg($.name, `🎉获取仰韶会员认证成功!\n${token}`, ``);
+    $.msg($.name, `🎉获取杜康会员认证成功!\n${token}`, ``);
     $.setdata(token,"DKHY");
 }
 
