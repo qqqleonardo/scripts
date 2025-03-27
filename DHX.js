@@ -76,6 +76,7 @@ async function commonPost (uri, token,body) {
             headers : {
                 'content-type': `application/json`,
                 'Connection': `keep-alive`,
+                 'serialId': '69f8dc47-2cec-490e-a0cb-9a143f8f2558',
                 'Accept-Encoding': `gzip,compress,br,deflate`,
                 'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.56(0x18003831) NetType/WIFI Language/zh_CN`,
                 'Authorization': `${token}`
@@ -105,6 +106,7 @@ async function commonGet (uri,token) {
             url: `https://ucodeportal.dhx9.cn/api-gateway/openapi/${uri}`,
             headers: {
                 'Accept': 'application/json, text/plain, */*',
+                'serialId': '69f8dc47-2cec-490e-a0cb-9a143f8f2558',
                 'sec-fetch-site': 'same-origin',
                 'accept-language': 'zh-CN,zh-Hans;q=0.9',
                 'accept-encoding': 'gzip, deflate, br',
