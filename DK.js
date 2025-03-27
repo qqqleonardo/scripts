@@ -36,8 +36,8 @@ async function main () {
         console.log("签到成功")
         notice += `用户签到成功\n`
     } else {
-        console.log(`签到失败: ${sign.message}`)
-        notice += `用户签到失败:${sign.message}\n`
+        console.log(`签到失败: ${sign.msg}`)
+        notice += `用户签到失败:${sign.msg}\n`
     }
 
     //获取信息
