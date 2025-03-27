@@ -44,8 +44,8 @@ async function main () {
     await $.wait(3000);
     console.log("\n——————")
     let info = await commonGet("/mine/getMemberInfo", token);
-    console.log(`当前拥有积分: ${info.data}\n`)
-    notice += `用户当前拥有积分: ${info.data}\n`
+    console.log(`当前拥有积分: ${info.data.score}\n`)
+    notice += `用户当前拥有积分: ${info.data.score}\n`
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
