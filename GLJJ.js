@@ -39,7 +39,7 @@ async function main () {
     //获取信息
     await $.wait(3000);
     console.log("\n——————")
-    let info = await commonGet("/user/ino", token);
+    let info = await commonGet("/user/info", token);
     console.log(`当前拥有积分: ${info.data.growthValue}\n`)
     notice += `用户当前拥有积分: ${info.data.growthValue}\n`
     // await $.wait(5000);
