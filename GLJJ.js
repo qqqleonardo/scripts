@@ -11,7 +11,7 @@ hostname = https://member.guoyuejiu.com
 ====================================================================================================
 */
 const $ = new Env('国乐酱酒小程序');
-const GLJJ = ($.isNode() ? JSON.parse(process.env.GLJJ) : $.getjson("GLJJ")) || [];
+const GLJJ = ($.isNode() ? JSON.parse(process.env.GLJJ) : $.getdata("GLJJ")) || [];
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -22,7 +22,7 @@ let notice = ''
 })().catch((e) => { $.log(e) }).finally(() => { $.done({}); });
 
 async function main () {
-    token = $.getjson("GLJJ");
+    token = $.getdata("GLJJ");
     //签到
     console.log("\n开始签到")
     console.log(`${token}`)
@@ -55,7 +55,7 @@ async function getCookie () {
         return
     }
     $.msg($.name, `🎉获取国乐酱酒认证成功!\n${token}`, ``);
-    $.setjson(GLJJ,"GLJJ");
+    $.setdata(GLJJ,"GLJJ");
 }
 
 // async function commonPost (url, token,body) {
