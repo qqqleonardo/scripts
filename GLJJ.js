@@ -25,6 +25,7 @@ async function main () {
     token = $.getjson("GLJJ");
     //签到
     console.log("\n开始签到")
+    console.log(`${token}`)
     console.log("——————")
     let sign = await commonGet('/sign/daily/sign',token);
     if (sign.code == 0) {
