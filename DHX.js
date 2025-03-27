@@ -42,8 +42,8 @@ async function main () {
     await $.wait(2000);
     console.log("\n——————")
     let info = await commonGet("/user/v2/pointDetails?pointTypes=64", token);
-    console.log(`当前拥有积分: ${info.content.validNumber}\n`)
-    notice += `用户当前拥有积分: ${info.content.validNumber}\n`
+    console.log(`当前拥有积分: ${info.content[0].validNumber}\n`)
+    notice += `用户当前拥有积分: ${info.content[0].validNumber}\n`
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
