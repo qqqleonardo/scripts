@@ -55,7 +55,7 @@ async function getCookie () {
         return
     }
     $.msg($.name, `🎉获取国乐酱酒认证成功!\n${token}`, ``);
-    $.setdata(GLJJ,"GLJJ");
+    $.setdata(token,"GLJJ");
 }
 
 // async function commonPost (url, token,body) {
