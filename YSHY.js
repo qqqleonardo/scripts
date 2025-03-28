@@ -72,21 +72,22 @@ async function commonPost (uri, token,body) {
             },
             body: `${body}`,
         }
-$.post(options, (err, resp, data) => {
-    console.log("原始响应数据:", data);
-    try {
-        if (err) {
-            console.log(`${JSON.stringify(err)}`)
-            console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-            resolve(JSON.parse(data));
-        }
-    } catch (e) {
-        $.logErr(e, resp)
-    } finally {
-        resolve();
-    }
-})
+
+        $.post(options, (err, resp, data) => {
+            console.log("原始响应数据:", data);
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    resolve(JSON.parse(data));
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve();
+            }
+        })
     })
 }
 
