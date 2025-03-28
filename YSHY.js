@@ -32,8 +32,8 @@ async function main () {
         console.log("签到成功")
         notice += `用户签到成功\n`
     } else {
-        console.log(`签到失败: ${sign.message}`)
-        notice += `用户签到失败:${sign.message}\n`
+        console.log(`签到失败: ${sign.msg}`)
+        notice += `用户签到失败:${sign.msg}\n`
     }
 
     //获取信息
@@ -72,9 +72,9 @@ async function commonPost (uri, token,body) {
             },
             body: `${body}`,
         }
-        console.log(`请求数据: ${options}`);
+        //console.log(`请求数据: ${options}`);
         $.post(options, (err, resp, data) => {
-            console.log(`原始响应数据: ${data}`);
+            //console.log(`原始响应数据: ${data}`);
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
