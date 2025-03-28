@@ -105,20 +105,21 @@ async function commonPost(uri, token, body) {
         body: JSON.stringify(body)
     };
     console.log(JSON.stringify(options.headers));
-    return new Promise(async (resolve, reject) => {
+    $.post(options, (err, resp, data) => {
+        console.log("原始响应数据:", data);
         try {
-            const response = await $.post(options);
-            // 检查 response 是否为 undefined
-            if (response && response.body) {
-                const data = JSON.parse(response.body);
-                resolve(data);
+            if (err) {
+                console.log(`${JSON.stringify(err)}`)
+                console.log(`${$.name} API请求失败，请检查网路重试`)
             } else {
-                reject(new Error('未获取到有效的响应数据'));
+                resolve(JSON.parse(data));
             }
-        } catch (error) {
-            reject(error);
+        } catch (e) {
+            $.logErr(e, resp)
+        } finally {
+            resolve();
         }
-    });
+    })
 }
 
 async function commonGet(uri, token) {
@@ -138,20 +139,21 @@ async function commonGet(uri, token) {
             'Sec-Fetch-Dest': 'empty'
         }
     };
-    return new Promise(async (resolve, reject) => {
+    $.get(options, (err, resp, data) => {
+        console.log("原始响应数据:", data);
         try {
-            const response = await $.get(options);
-            // 检查 response 是否为 undefined
-            if (response && response.body) {
-                const data = JSON.parse(response.body);
-                resolve(data);
+            if (err) {
+                console.log(`${JSON.stringify(err)}`)
+                console.log(`${$.name} API请求失败，请检查网路重试`)
             } else {
-                reject(new Error('未获取到有效的响应数据'));
+                resolve(JSON.parse(data));
             }
-        } catch (error) {
-            reject(error);
+        } catch (e) {
+            $.logErr(e, resp)
+        } finally {
+            resolve();
         }
-    });
+    })
 }
 
 async function sendMsg(message) {
