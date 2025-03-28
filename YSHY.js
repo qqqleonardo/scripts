@@ -25,6 +25,7 @@ let notice = ''
 async function main () {
     token = $.getdata("YSHY");
     //签到
+    console.log(token)
     console.log("\n开始签到")
     console.log("——————")
     // const body = `{"code":"0b1R4s1w3OO0C43vQYZv3PInhi0R4s1L","appId":"wx5ed5e20c00e05ba9"}`;
