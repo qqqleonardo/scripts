@@ -25,13 +25,13 @@ async function main() {
     token = $.getdata("DKHY");
     //签到
     console.log("\n开始签到")
+    console.log(token)
     console.log("——————")
     const body = JSON.stringify({
         code: "0f1ZIW0w3rRDD43xT41w39HzHR3ZIW0v",
         appId: "wx707b4667f7c30245",
         signTime: getSignTime()
     });
-    // const body = `{"code":"0f1GvTll2rcjhf4oBQnl2GUXLu0GvTln","appId":"wx707b4667f7c30245","signTime":"2025-03-28"}`;
 
     let sign = await commonPost('/signIn/save', token, body);
     if (sign.code == 200) {
@@ -88,6 +88,7 @@ async function commonPost(uri, token, body) {
             },
             body: `${body}`,
         }
+        console.log(JSON.stringify(options.headers))
         $.post(options, (err, resp, data) => {
             try {
                 if (err) {
