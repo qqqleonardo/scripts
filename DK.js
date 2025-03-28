@@ -84,9 +84,9 @@ async function commonPost(uri, token, body) {
             },
             body: `${body}`,
         }
-        // console.log(JSON.stringify(options))
+        console.log(JSON.stringify(options))
         $.post(options, (err, resp, data) => {
-            // console.log(JSON.stringify(data))
+            console.log(JSON.stringify(data))
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -121,9 +121,9 @@ async function commonGet(uri, token) {
                 'Sec-Fetch-Dest': 'empty'
             }
         }
-        console.log(JSON.stringify(options))
+        // console.log(JSON.stringify(options))
         $.get(options, (err, resp, data) => {
-            console.log(JSON.stringify(data))
+            // console.log(JSON.stringify(data))
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
