@@ -28,8 +28,11 @@ async function main () {
     console.log(token)
     console.log("\n开始签到")
     console.log("——————")
-    // const body = `{"code":"0b1R4s1w3OO0C43vQYZv3PInhi0R4s1L","appId":"wx5ed5e20c00e05ba9"}`;
-    let sign = await commonPost('/signIn/save', token, {});
+    const body = {
+        "code":"0b1R4s1w3OO0C43vQYZv3PInhi0R4s1L",
+        "appId":"wx5ed5e20c00e05ba9"
+    };
+    let sign = await commonPost('/signIn/save', token, body);
     if (sign.code == 200) {
         console.log("签到成功")
         notice += `用户签到成功\n`
