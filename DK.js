@@ -25,13 +25,15 @@ async function main() {
     token = $.getdata("DKHY");
     //签到
     console.log("\n开始签到")
+
     console.log(token)
+
     console.log("——————")
     const body = JSON.stringify({
         code: "0f1ZIW0w3rRDD43xT41w39HzHR3ZIW0v",
         appId: "wx707b4667f7c30245",
         signTime: getSignTime()
-    });
+    })
 
     let sign = await commonPost('/signIn/save', token, body);
     if (sign.code == 200) {
