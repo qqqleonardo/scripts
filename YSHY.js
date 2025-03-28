@@ -28,7 +28,7 @@ async function main () {
     console.log("\n开始签到")
     console.log("——————")
     // const body = `{"code":"0b1R4s1w3OO0C43vQYZv3PInhi0R4s1L","appId":"wx5ed5e20c00e05ba9"}`;
-    let sign = await commonPost('/signIn/save',token,{});
+    let sign = await commonPost('/signIn/save', token, {});
     if (sign.code == 200) {
         console.log("签到成功")
         notice += `用户签到成功\n`
@@ -62,7 +62,7 @@ async function getCookie () {
 async function commonPost (uri, token,body) {
     return new Promise(resolve => {
         const options = {
-            url: `https://hy.51pt.top/app/ys/${uri}`,
+            url: `https://hy.51pt.top/app/ys${uri}`,
             headers : {
                 'content-type': `application/json`,
                 'Connection': `keep-alive`,
@@ -73,9 +73,9 @@ async function commonPost (uri, token,body) {
             },
             body: `${body}`,
         }
-        console.log("请求数据:", options);
+        // console.log("请求数据:", options);
         $.post(options, (err, resp, data) => {
-            console.log("原始响应数据:", data);
+            // console.log("原始响应数据:", data);
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -112,7 +112,7 @@ async function commonGet (uri,token) {
             }
         }
         $.get(options, (err, resp, data) => {
-            console.log("原始响应数据:", data);
+            // console.log("原始响应数据:", data);
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
