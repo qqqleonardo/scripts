@@ -73,6 +73,7 @@ async function commonPost (uri, token,body) {
             body: `${body}`,
         }
 $.post(options, (err, resp, data) => {
+    console.log("原始响应数据:", data);
     try {
         if (err) {
             console.log(`${JSON.stringify(err)}`)
@@ -109,6 +110,7 @@ async function commonGet (uri,token) {
             }
         }
         $.get(options, (err, resp, data) => {
+            console.log("原始响应数据:", data);
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
