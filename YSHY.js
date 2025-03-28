@@ -75,7 +75,7 @@ async function commonPost (uri, token,body) {
         }
         // console.log("请求数据:", options);
         $.post(options, (err, resp, data) => {
-            // console.log("原始响应数据:", data);
+            console.log(JSON.stringify(data))
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
