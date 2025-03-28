@@ -75,7 +75,7 @@ async function commonPost(uri, token, body) {
                 'Authorization': `${token}`,
                 'Host': `hy.51pt.top`
             },
-            body: `${body}`,
+            body: JSON.stringify(body),
         }
         // console.log("请求数据:", options);
         $.post(options, (err, resp, data) => {
