@@ -89,6 +89,7 @@ async function getCookie() {
     $.setdata(token, "DKHY");
 }
 
+
 async function commonPost(uri, token, body) {
     const options = {
         url: `${BASE_URL}${uri}`,
@@ -107,8 +108,13 @@ async function commonPost(uri, token, body) {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await $.post(options);
-            const data = JSON.parse(response.body);
-            resolve(data);
+            // 检查 response 是否为 undefined
+            if (response && response.body) {
+                const data = JSON.parse(response.body);
+                resolve(data);
+            } else {
+                reject(new Error('未获取到有效的响应数据'));
+            }
         } catch (error) {
             reject(error);
         }
@@ -135,8 +141,13 @@ async function commonGet(uri, token) {
     return new Promise(async (resolve, reject) => {
         try {
             const response = await $.get(options);
-            const data = JSON.parse(response.body);
-            resolve(data);
+            // 检查 response 是否为 undefined
+            if (response && response.body) {
+                const data = JSON.parse(response.body);
+                resolve(data);
+            } else {
+                reject(new Error('未获取到有效的响应数据'));
+            }
         } catch (error) {
             reject(error);
         }
