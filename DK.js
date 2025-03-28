@@ -44,8 +44,8 @@ async function main() {
     await $.wait(3000);
     console.log("\n——————")
     let info = await commonGet("/mine/getMemberInfo", token);
-    console.log(`当前拥有积分: ${info.data.score}\n`)
-    notice += `用户当前拥有积分: ${info.data.score}\n`
+    console.log(`当前拥有积分: ${info.data.member.score}\n`)
+    notice += `用户当前拥有积分: ${info.data.member.score}\n`
     // await $.wait(5000);
     if (notice) {
         await sendMsg(notice);
@@ -74,7 +74,7 @@ async function getCookie() {
 async function commonPost(uri, token, body) {
     return new Promise(resolve => {
         const options = {
-            url: `https://dkmall.51pt.top/app/ys/${uri}`,
+            url: `https://dkmall.51pt.top/app/ys${uri}`,
             headers: {
                 'content-type': `application/json`,
                 'Connection': `keep-alive`,
