@@ -11,7 +11,7 @@ hostname = dkmall.51pt.top
 ====================================================================================================
 */
 const $ = new Env('杜康会员俱乐部小程序');
-const GLJJ = ($.isNode() ? JSON.parse(process.env.DKHY) : $.getdata("DKHY")) || [];
+const DKHY = ($.isNode() ? JSON.parse(process.env.DKHY) : $.getdata("DKHY")) || [];
 let notice = ''
 !(async () => {
     if (typeof $request != "undefined") {
@@ -26,11 +26,13 @@ async function main () {
     //签到
     console.log("\n开始签到")
     console.log("——————")
-    const body = JSON.stringify({
-        code:"0f1ZIW0w3rRDD43xT41w39HzHR3ZIW0v",
-        appId:"wx707b4667f7c30245",
-        signTime:getSignTime()
-        });
+    // const body = JSON.stringify({
+    //     code:"0f1ZIW0w3rRDD43xT41w39HzHR3ZIW0v",
+    //     appId:"wx707b4667f7c30245",
+    //     signTime:getSignTime()
+    //     });
+    // const body = `{"code":"0f1GvTll2rcjhf4oBQnl2GUXLu0GvTln","appId":"wx707b4667f7c30245","signTime":"2025-03-28"}`;
+    const body = `{"code":"0f1ZIW0w3rRDD43xT41w39HzHR3ZIW0v","appId":"wx707b4667f7c30245","signTime":"2025-03-28"}`;
     let sign = await commonPost('/signIn/save',token,body);
     if (sign.code == 200) {
         console.log("签到成功")
@@ -76,10 +78,12 @@ async function commonPost (uri, token,body) {
         const options = {
             url: `https://dkmall.51pt.top/app/ys/${uri}`,
             headers : {
-                'content-type': `application/json`,
-                'Connection': `keep-alive`,
-                'Accept-Encoding': `gzip,compress,br,deflate`,
-                'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.56(0x18003831) NetType/WIFI Language/zh_CN`,
+                'Accept-Encoding' : `gzip,compress,br,deflate`,
+                'content-type' : `application/json`,
+                'Connection' : `keep-alive`,
+                'Referer' : `https://servicewechat.com/wx707b4667f7c30245/86/page-frame.html`,
+                'Host' : `dkmall.51pt.top`,
+                'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 18_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.57(0x18003929) NetType/4G Language/zh_CN`,
                 'Authorization': `${token}`
             },
             body: `${body}`,
