@@ -67,7 +67,7 @@ async function getCookie() {
     if (!token) {
         return
     }
-    $.msg($.name, `🎉获取仰韶会员认证成功!\n${token}`, ``);
+    $.msg($.name, `🎉获取杜康会员认证成功!\n${token}`, ``);
     $.setdata(token, "DKHY");
 }
 
@@ -84,9 +84,9 @@ async function commonPost(uri, token, body) {
             },
             body: `${body}`,
         }
-        console.log(JSON.stringify(options))
+        // console.log(JSON.stringify(options))
         $.post(options, (err, resp, data) => {
-            console.log(JSON.stringify(data))
+            // console.log(JSON.stringify(data))
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
